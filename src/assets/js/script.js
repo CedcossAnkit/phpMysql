@@ -122,7 +122,120 @@ $(document).ready(function () {
         }
     });
 
+    // $("#aprov").click(function (e) { 
+    //     e.preventDefault();
+    //     alert("aproved");
+    // });
 
+    $(document).on('click','#aprov', function (e) {
+        e.preventDefault();
+        var id=$(this).val();
+        // alert(id);
 
+        $.ajax({
+            type: "post",
+            url: "classes/call.php",
+            data: {
+                action:"updateapprov",
+                id:id
+            },
+            success: function (response) {
+                $(location). attr('href','../../dashboard.php'); 
+            }
+        });
+
+    });
+
+    $(document).on('click','#block', function (e) {
+        e.preventDefault();
+        var id=$(this).val();
+        // alert(id);
+        $.ajax({
+            type: "post",
+            url: "classes/call.php",
+            data: {
+                action:"updateblock",
+                id:id
+            },
+            success: function (response) {
+                $(location). attr('href','../../dashboard.php'); 
+            }
+        });
+        
+    });
+
+    $(document).on('click','#del', function (e) {
+        e.preventDefault();
+        var id=$(this).val();
+        // alert(id);
+        $.ajax({
+            type: "post",
+            url: "classes/call.php",
+            data: {
+                action:"delvalue",
+                id:id
+            },
+            success: function (response) {
+                $(location). attr('href','../../dashboard.php'); 
+            }
+        });
+        
+    });
+    
+    $("#aaddproduct").click(function (e) { 
+        e.preventDefault();
+        var pid=$("#pid").val();
+        var pname=$("#pname").val();
+        var pcat=$("#pcat").val();
+        var pScat=$("#pScat").val();
+        var pprice=$("#pprice").val();
+        if(pid="" || pname=="" || pcat=="" || pScat=="" || pprice==""){
+            $("#pid").css("borderColor","red");
+            $("#pname").css("borderColor","red");
+            $("#pcat").css("borderColor","red");
+            $("#pScat").css("borderColor","red");
+            $("#pprice").css("borderColor","red");
+        }
+        else{
+            console.log(pid,pname,pcat,pScat,pprice);
+            var pidd=$("#pid").val();
+            $.ajax({
+                
+                type: "post",
+                url: "classes/call.php",
+                data: {
+                    action:"productInsert",
+                    pid:pidd,
+                    pname:pname,
+                    pcat:pcat,
+                    pScat,pScat,
+                    pprice,pprice
+                },
+                success: function (response) {
+                              
+                    $("#pid").css("borderColor","green");
+                    $("#pname").css("borderColor","green");
+                    $("#pcat").css("borderColor","green");
+                    $("#pScat").css("borderColor","green");
+                    $("#pprice").css("borderColor","green");
+               
+                }
+                
+                
+
+            });
+            $(location). attr('href','../../products.php'); 
+            
+            
+            
+            $("#pid").css("borderColor","green");
+            $("#pname").css("borderColor","green");
+            $("#pcat").css("borderColor","green");
+            $("#pScat").css("borderColor","green");
+            $("#pprice").css("borderColor","green");
+        }
+        
+
+    });
 
 });

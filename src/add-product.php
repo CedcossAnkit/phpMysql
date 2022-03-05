@@ -152,7 +152,7 @@
           </div>
         </div>
         <div class="col-12">
-          <button type="submit" class="btn btn-primary">Add Product</button>
+          <button type="submit" class="btn btn-primary">Add Products</button>
         </div>
       </form>      
     </main>

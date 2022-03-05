@@ -1,3 +1,35 @@
+<?php
+  session_start();
+  require_once "./classes/User.php";
+  $name=$_SESSION['admin'][0]['name'];
+  $role=$_SESSION['admin'][0]['role'];
+  $id=$_SESSION['admin'][0]['id'];
+
+
+  $myobj=new User();
+  // echo "<pre>";
+  // print_r($_SESSION['admin'][0]['name']);
+  // echo "</pre>";
+  // foreach($_SESSION['admin'] as $key=>$val){
+  //   if($key=='name')
+  //   {
+  //       $name= $val['name'];
+  //   }
+  // }
+  $myobj->feachDetails();
+  
+ 
+  // 
+  // echo $len;
+  
+  // // // for($i=0;$i<count($_SESSION['user']);$i++){
+  // // //   for($j=0;$j<count($_SESSION['user']);$j++){
+  // // //     echo $_SESSION['user'][$j];
+
+  // // //   }
+  // // // }
+  // echo $len;
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,9 +39,10 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
     <title>Dashboard Template · Bootstrap v5.1</title>
-
+    <link rel="stylesheet" href=".//.//assets/css/dashboard.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="./assets/js/script.js"></script>
     
 
     <!-- Bootstrap core CSS -->
@@ -39,14 +72,14 @@
   <body>
     
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Hello <?php echo $name?></a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Sign out</a>
+      <a class="nav-link px-3" href="login.php">Sign out <?php echo $name?></a>
     </div>
   </div>
 </header>
@@ -57,7 +90,7 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="dashboard.html">
+            <a class="nav-link active" aria-current="page" href="./dashboard.php">
               <span data-feather="home"></span>
               Dashboard
             </a>
@@ -69,7 +102,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="products.html">
+            <a class="nav-link" href="products.php">
               <span data-feather="shopping-cart"></span>
               Products
             </a>
@@ -111,33 +144,27 @@
         </div>
       </div>
 
-      <h2>Section title</h2>
+      <h2><?php echo $name?></h2>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
+           
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Header</th>
-              <th scope="col">Header</th>
-              <th scope="col">Header</th>
-              <th scope="col">Header</th>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Password</th>
+              <th scope="col">Role</th>
+              <th scope="col">Status</th>
+              <th scope="col">Status/Approved</th>
+              <th scope="col">Delete User</th>
+
+
             </tr>
+
           </thead>
           <tbody>
-            <tr>
-              <td>1,001</td>
-              <td>random</td>
-              <td>data</td>
-              <td>placeholder</td>
-              <td>text</td>
-            </tr>
-            <tr>
-              <td>1,002</td>
-              <td>placeholder</td>
-              <td>irrelevant</td>
-              <td>visual</td>
-              <td>layout</td>
-            </tr>
+            <?php echo $myobj->displayTableData($role,$id)?>
           </tbody>
         </table>
       </div>

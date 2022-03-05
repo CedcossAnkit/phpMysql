@@ -18,13 +18,33 @@ switch($action){
         $role=$_POST['role'];
         $status=$_POST['status'];
         $myobj->addUser($id,$username,$password,$email,$role,$status);
-    
+        break;
     case 'login':
         $username=$_POST['username'];
         $password=$_POST['password'];
         echo $myobj->CheckUSer($username,$password);
-  
-        
+        break;
+    case 'updateapprov':
+        $id=$_POST['id'];
+        $myobj->approved($id);
+        break;
+
+    case 'updateblock':
+        $id=$_POST['id'];
+        $myobj->blocked($id);
+        break;
+    case 'delvalue':
+        $id=$_POST['id'];
+        $myobj->deleteuser($id);
+        break;
+    case 'productInsert':
+        $pid=$_POST['pid'];
+        $pname=$_POST['pname'];
+        $pcat=$_POST['pcat'];
+        $pScat=$_POST['pScat'];
+        $pprice=$_POST['pprice'];
+        $myobj->insertProduct($pid,$pname,$pcat,$pScat,$pprice);
+        break;
 
 }
 ?>

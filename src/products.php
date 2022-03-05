@@ -1,3 +1,12 @@
+<?php
+  session_start();
+  require_once "./classes/User.php";
+  $name=$_SESSION['admin'][0]['name'];
+  $myobj=new User();
+  // $role=$_SESSION['admin'][0]['role'];
+  // $id=$_SESSION['admin'][0]['id'];
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -9,7 +18,8 @@
     <title>Dashboard Template · Bootstrap v5.1</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="./assets/js/script.js"></script>
     
 
     <!-- Bootstrap core CSS -->
@@ -39,14 +49,14 @@
   <body>
     
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Hello <?php echo $name?></a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Sign out</a>
+      <a class="nav-link px-3" href="#">Sign Out <?php echo $name?></a>
     </div>
   </div>
 </header>
@@ -57,7 +67,7 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="dashboard.html">
+            <a class="nav-link active" aria-current="page" href="dashboard.php">
               <span data-feather="home"></span>
               Dashboard
             </a>
@@ -156,37 +166,38 @@
       
         <div class="col-12">
           <button type="submit" class="btn btn-primary">Search</button>
-        </div>
-        <div class="col-12">
-          <a class="btn btn-success" href="add-product.html">Add Product</a>
-        </div>
+        </div><br><br><br>
+
+       
+        
       </form>
+      <div class="row mt-2">
+
+        <div class="col-4"> <input type="text" class="form-control" id="pid" placeholder="Product id"><br></div>
+        <div class="col-4"> <input type="text" class="form-control" id="pname" placeholder="Product name "></div>
+        <div class="col-4"> <input type="text" class="form-control" id="pcat" placeholder="Product Catagory"></div>
+        <div class="col-4"> <input type="text" class="form-control" id="pScat" placeholder="Product Sub Catagory"></div>
+        <div class="col-4"> <input type="text" class="form-control" id="pprice" placeholder="Product Price"></div>
+        <div class="col-4">
+        <a class="btn btn-success mt-1" href="add-product.php" id="aaddproduct">Add Product</a>
+
+        </div>
+      </div>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">ID</th>
+              <th scope="col">id</th>
               <th scope="col">Name</th>
+              <th scope="col">Catagory</th>
+              <th scope="col">Sub Catagory</th>
               <th scope="col">Price</th>
               <th scope="col">Action</th>
+
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1,001</td>
-              <td>random</td>
-              <td>data</td>
-              <td>placeholder</td>
-              <td><a href="#">Edit</a>&nbsp;<a href="#">Delete</a></td>
-            </tr>
-            <tr>
-              <td>1,002</td>
-              <td>placeholder</td>
-              <td>irrelevant</td>
-              <td>visual</td>
-              <td><a href="#">Edit</a>&nbsp;<a href="#">Delete</a></td>
-            </tr>
+            <?php  echo $myobj->displayproduct($_SESSION['p'])?>
           </tbody>
         </table>
         <nav aria-label="Page navigation example">

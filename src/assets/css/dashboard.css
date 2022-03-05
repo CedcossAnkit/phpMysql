@@ -99,3 +99,14 @@ body {
     box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
   }
   
+  #aprov{
+    background-color: green;
+    color: white;
+    border: 1px solid green;
+  }
+  #block{
+    background-color: red;
+    border: 1px solid red;
+
+    color: white;
+  }
