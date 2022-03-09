@@ -56,7 +56,7 @@
   <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Sign Out <?php echo $name?></a>
+      <a class="nav-link px-3" href="./login.php">Sign Out <?php echo $name?></a>
     </div>
   </div>
 </header>
@@ -73,7 +73,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="./orders.php">
               <span data-feather="file"></span>
               Orders
             </a>
@@ -158,57 +158,53 @@
         <div class="col-12">
           <label class="visually-hidden" for="inlineFormInputGroupUsername">Search</label>
           <div class="input-group">
-            <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Enter id,name...">
+            <input type="text" class="form-control" id="searcproduct" placeholder="Enter id,name...">
           </div>
         </div>
       
         
       
         <div class="col-12">
-          <button type="submit" class="btn btn-primary">Search</button>
+          <button type="submit" class="btn btn-primary" id="srchh">Search</button>
         </div><br><br><br>
 
        
         
       </form>
       <div class="row mt-2">
-
+      <h3 class="text-center">Add Product </h3>
         <div class="col-4"> <input type="text" class="form-control" id="pid" placeholder="Product id"><br></div>
         <div class="col-4"> <input type="text" class="form-control" id="pname" placeholder="Product name "></div>
         <div class="col-4"> <input type="text" class="form-control" id="pcat" placeholder="Product Catagory"></div>
         <div class="col-4"> <input type="text" class="form-control" id="pScat" placeholder="Product Sub Catagory"></div>
         <div class="col-4"> <input type="text" class="form-control" id="pprice" placeholder="Product Price"></div>
+        <div class="col"> <input type="text" class="form-control" id="pimage" placeholder="Image Name"></div>
         <div class="col-4">
-        <a class="btn btn-success mt-1" href="add-product.php" id="aaddproduct">Add Product</a>
+        <a class="btn btn-success mt-2" href="products.php" id="aaddproduct">Add Product</a>
+        <a class="btn btn-success mt-2" href="add-product.php" id="UpdateProduct" style="display: none;">Update Product</a>
+
 
         </div>
       </div>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">id</th>
-              <th scope="col">Name</th>
-              <th scope="col">Catagory</th>
-              <th scope="col">Sub Catagory</th>
-              <th scope="col">Price</th>
-              <th scope="col">Action</th>
-
-            </tr>
-          </thead>
-          <tbody>
-            <?php  echo $myobj->displayproduct($_SESSION['p'])?>
+          
+         
+          <tbody id="tb">
+            <?php  echo $myobj->paginationProduct(0)?>
           </tbody>
         </table>
-        <nav aria-label="Page navigation example">
+        <div class="col-12 d-flex justify-content-center">
+    <nav aria-label="Page navigation example" class="">
             <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              <li class="page-item" ><p class="page-link" id="pageclickproduct">Previous</p></li>
+              <li class="page-item" ><p class="page-link" id="pageclickproduct">1</p></li>
+              <li class="page-item" ><p class="page-link" id="pageclickproduct">2</p></li>
+              <li class="page-item" ><p class="page-link" id="pageclickproduct">3</p></li>
+              <li class="page-item" ><p class="page-link" id="pageclickproduct">Next</p></li>
             </ul>
           </nav>
+          </div>
       </div>
     </main>
   </div>
